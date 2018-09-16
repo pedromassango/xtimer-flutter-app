@@ -19,8 +19,11 @@ class TaskWidget extends StatelessWidget{
       child: Row(
         children: <Widget>[
           Container(
-            width: 50.0, height: 50.0,
-            color: task.color,
+            width: 30.0, height: 30.0,
+            decoration: BoxDecoration(
+                color: task.color,
+                borderRadius: BorderRadius.circular(32.0)
+            ),
           ),
           Column(
             children: <Widget>[
