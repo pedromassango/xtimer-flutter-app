@@ -8,29 +8,41 @@ class TaskWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(3.0),
+      margin: EdgeInsets.only(top: 4.0, bottom: 4.0, left: 8.0, right: 8.0),
+      padding: EdgeInsets.all(12.0),
       decoration: new BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
           color: Colors.grey,
           width: 1.0,
-          style: BorderStyle.solid
         )
       ),
       child: Row(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(8.0),
-            width: 30.0, height: 30.0,
+            margin: EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0, right: 12.0),
+            width: 20.0, height: 20.0,
             decoration: BoxDecoration(
                 color: task.color,
                 borderRadius: BorderRadius.circular(40.0)
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(task.title),
-              Text('Duration: ${task.date.day}')
+              Text(task.title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+              Text('Duration: ${task.date.day}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.0
+              ),
+              )
             ],
           )
         ],
