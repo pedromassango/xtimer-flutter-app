@@ -8,7 +8,7 @@ class TaskWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 4.0, bottom: 4.0, left: 8.0, right: 8.0),
+      margin: EdgeInsets.all( 8.0),
       padding: EdgeInsets.all(12.0),
       decoration: new BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
@@ -21,7 +21,7 @@ class TaskWidget extends StatelessWidget{
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0, right: 12.0),
-            width: 20.0, height: 20.0,
+            width: 15.0, height: 15.0,
             decoration: BoxDecoration(
                 color: task.color,
                 borderRadius: BorderRadius.circular(40.0)
@@ -33,7 +33,7 @@ class TaskWidget extends StatelessWidget{
               Text(task.title,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18.0,
+                fontSize: 19.0,
                 fontWeight: FontWeight.bold
               ),
               ),
