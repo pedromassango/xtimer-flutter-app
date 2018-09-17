@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState(){
     super.initState();
+    // Set this screen as a fullscreen
     SystemChrome.setEnabledSystemUIOverlays([]);
   }
 
