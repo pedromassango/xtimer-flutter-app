@@ -25,7 +25,7 @@ class _TimerPageState extends State<TimerPage> {
   String buttonText = 'Start';
 
   /// The task timer
-  Timer timer;
+  int timer;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _TimerPageState extends State<TimerPage> {
   void _restartCountDown() {
     setState(() {
       started = false;
-      time = getTask().date.minute;
+      time = getTask().date;
       buttonText = 'start';
     });
   }
