@@ -3,6 +3,7 @@ import 'package:xtimer/widgets/task_widget.dart';
 import 'package:xtimer/pages/timer_page.dart';
 import 'package:flutter/services.dart';
 import 'package:xtimer/model/task_model.dart';
+import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -41,8 +42,12 @@ class _HomePageState extends State<HomePage> {
   /// When called start timer Screen
   void _startTimerPage(Task task){
     Navigator
-        .of(context)
-        .push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
+        .of(context, rootNavigator: true)
+        .push(new CupertinoPageRoute<bool>(
+        fullscreenDialog: true,
+        builder: (buildContext) => TimerPage(task: task)
+    ));
+        //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
   }
 
   @override
