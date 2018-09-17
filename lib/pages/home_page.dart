@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xtimer/widgets/task_widget.dart';
 import 'package:xtimer/pages/timer_page.dart';
-
+import 'package:flutter/services.dart';
 import 'package:xtimer/model/task_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +25,12 @@ class _HomePageState extends State<HomePage> {
     Task(Colors.teal, 'Meditation', DateTime.now()),
     Task(Colors.deepPurple, 'Read about Bitcoin', DateTime.now()),
   ];
+
+  @override
+  void initState(){
+    super.initState();
+    SystemChrome.setEnabledSystemUIOverlays([]);
+  }
 
   /// When called, close this Screen
   void _closePage() {
