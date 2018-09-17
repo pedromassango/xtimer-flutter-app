@@ -15,16 +15,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  static DateTime now() => DateTime.now();
+  
   /// A set of tasks
   List<Task> tasksList = [
-    Task(Colors.green, 'Study', DateTime.now()),
-    Task(Colors.red, 'Workout', DateTime.now()),
-    Task(Colors.purple, 'Pratice Flutter', DateTime.now()),
-    Task(Colors.amber, 'Read about Bitcoin', DateTime.now()),
-    Task(Colors.blue, 'Pratice Piano', DateTime.now()),
-    Task(Colors.deepOrange, 'Learn English', DateTime.now()),
-    Task(Colors.teal, 'Meditation', DateTime.now()),
-    Task(Colors.deepPurple, 'Read about Bitcoin', DateTime.now()),
+    Task(Colors.green, 'Study', now().minute),
+    Task(Colors.red, 'Workout', now().minute),
+    Task(Colors.purple, 'Pratice Flutter', now().minute),
+    Task(Colors.amber, 'Read about Bitcoin', now().minute),
+    Task(Colors.blue, 'Pratice Piano', now().minute),
+    Task(Colors.deepOrange, 'Learn English', now().minute),
+    Task(Colors.teal, 'Meditation', now().minute),
+    Task(Colors.deepPurple, 'Read about Bitcoin', now().minute),
   ];
 
   @override
