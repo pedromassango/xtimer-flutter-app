@@ -50,13 +50,11 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        title: Container(
-          padding: EdgeInsets.only(top: 8.0),
-          child: new Text(widget.title, style:
-          TextStyle(color: Colors.black, fontSize: 34.0, fontWeight: FontWeight.bold),
+        title:  new Text(widget.title, style:
+        TextStyle(color: Colors.black,
+              fontSize: 34.0,
+              fontWeight: FontWeight.bold),
           ),
-        ),
-
         //TODO: leading: Icon(Icons.menu, color: Colors.black,),
         actions: <Widget>[
           new IconButton(
