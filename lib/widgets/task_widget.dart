@@ -37,7 +37,7 @@ class TaskWidget extends StatelessWidget{
                 fontWeight: FontWeight.bold
               ),
               ),
-              Text('Duration: ${task.date.day}',
+              Text('Duration: ${task.date}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 14.0
