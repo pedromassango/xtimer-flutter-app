@@ -53,13 +53,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.transparent,
         title:  new Text(widget.title, style:
         TextStyle(color: Colors.black,
-              fontSize: 34.0,
+              fontSize: 32.0,
               fontWeight: FontWeight.bold),
           ),
         //TODO: leading: Icon(Icons.menu, color: Colors.black,),
         actions: <Widget>[
           new IconButton(
-            icon: Icon(Icons.add, color: Colors.black),
+            icon: Icon(Icons.add, color: Colors.black, size: 32.0,),
             onPressed: _closePage,
           )
         ],
