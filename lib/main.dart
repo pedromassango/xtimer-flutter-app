@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: SplashPage(),
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => HomePage(),
-        '/timer': (BuildContext context) => TimerPage()
+        //'/timer': (BuildContext context) => TimerPage()
       },
     );
   }
