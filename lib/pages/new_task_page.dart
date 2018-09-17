@@ -57,7 +57,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
               controller: _titleController,
               style: TextStyle(fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
               decoration: InputDecoration(
-                hintText: 'Title',
+                hintText: 'Name',
                 counterText: '30',
                 filled: true
               ),
