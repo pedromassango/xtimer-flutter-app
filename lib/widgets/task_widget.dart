@@ -14,7 +14,7 @@ class TaskWidget extends StatelessWidget{
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
           color: Colors.grey,
-          width: 1.0,
+          width: 0.5,
         )
       ),
       child: Row(
