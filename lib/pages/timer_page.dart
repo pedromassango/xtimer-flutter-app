@@ -60,14 +60,14 @@ class _TimerPageState extends State<TimerPage>{
         elevation: 0.0,
         backgroundColor: getTask().color,
         leading: IconButton(
-            icon: Icon(Icons.navigate_before,size: 42.0,),
+            icon: Icon(Icons.navigate_before,size: 40.0,),
             onPressed: (){
               Navigator.of(context).pop();
             }
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.sync, size: 30.0,),
+            icon: Icon(Icons.sync, size: 32.0, color: Colors.white70,),
             onPressed: _restartCountDown,
           )
         ],
