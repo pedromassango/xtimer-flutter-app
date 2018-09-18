@@ -17,12 +17,12 @@ class _NewTaskPageState extends State<NewTaskPage> {
   /// When called, save task and close this screen
   void _saveTaskAndClose(){
 
-    int minutes = int.parse(_timeController.text);
-    String title = _titleController.text;
-
-    var task = new Task(Colors.brown, title, minutes);
-
     //TODO: save task in database
+    //int minutes = int.parse(_timeController.text);
+    //String title = _titleController.text;
+
+    //var task = new Task(Colors.brown, title, minutes);
+
 
     // close screen
     Navigator.of(context).pop();
