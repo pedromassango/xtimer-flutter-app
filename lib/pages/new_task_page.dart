@@ -11,6 +11,8 @@ class NewTaskPage extends StatefulWidget {
 class _NewTaskPageState extends State<NewTaskPage> {
 
   TextEditingController _titleController, _timeController;
+  // Max title lenght
+  int maxTitleLength = 25;
 
   /// When called, save task and close this screen
   void _saveTaskAndClose(){
@@ -24,6 +26,14 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
     // close screen
     Navigator.of(context).pop();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _timeController = new TextEditingController(text: '');
+    _titleController = new TextEditingController(text: '');
   }
 
   @override
@@ -54,11 +64,12 @@ class _NewTaskPageState extends State<NewTaskPage> {
         child: Column(
           children: <Widget>[
             new TextField(
+              maxLength: maxTitleLength,
               controller: _titleController,
               style: TextStyle(fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
               decoration: InputDecoration(
                 hintText: 'Name',
-                counterText: '30',
+                counterText: maxTitleLength.toString(),
                 filled: true
               ),
             ),
@@ -67,6 +78,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
               alignment: Alignment.topLeft,
               margin: EdgeInsets.only(top: 32.0, left: 70.0, right: 70.0),
               child: new TextField(
+                maxLength: 3,
                 keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
                 controller: _timeController,
                 style: TextStyle(fontSize: 14.0, color: Colors.black),
