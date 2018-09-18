@@ -64,6 +64,7 @@ class _TimerPageState extends State<TimerPage> {
             icon: Icon(
               Icons.navigate_before,
               size: 40.0,
+              color: Colors.white70,
             ),
             onPressed: () {
               Navigator.of(context).pop();
@@ -84,9 +85,21 @@ class _TimerPageState extends State<TimerPage> {
         child: Center(
           child: Column(
             children: <Widget>[
-              Text(
-                time.toString() + 'm',
-                style: TextStyle(fontSize: 50.0, color: Colors.white70),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    time.toString(),
+                    style: TextStyle(fontSize: 54.0, color: Colors.white),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Text(
+                      'm',
+                      style: TextStyle(fontSize: 25.0, color: Colors.white),
+                    ),
+                  )
+                ],
               ),
               Text(
                 'Left on this Task',
