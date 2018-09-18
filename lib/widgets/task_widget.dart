@@ -42,9 +42,11 @@ class TaskWidget extends StatelessWidget{
                 color: Colors.black,
                 fontSize: 14.0
               ),
-              )
+              ),
             ],
-          )
+          ),
+          new Spacer(),
+          new Icon(Icons.navigate_next, color: task.color,)
         ],
       ),
     );
