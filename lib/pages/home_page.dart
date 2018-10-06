@@ -39,8 +39,7 @@ class _HomePageState extends State<HomePage> {
 
   /// When called, start new task
   void _startNewTaskPage() {
-    Navigator.of(context, rootNavigator: true).push(new CupertinoPageRoute(
-        fullscreenDialog: true, builder: (buildContext) => NewTaskPage()));
+    Navigator.of(context).pushNamed('/new');
   }
 
   /// When called start timer Screen
@@ -56,6 +55,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        centerTitle: false,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         title: new Text(
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
               size: 32.0,
             ),
             onPressed: _startNewTaskPage,
-          )
+          ),
         ],
       ),
       body: Container(

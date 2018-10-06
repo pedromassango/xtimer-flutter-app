@@ -40,12 +40,14 @@ class _NewTaskPageState extends State<NewTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: false,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         title: new Text(
           widget.title,
-          style: TextStyle(
-              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
+          //style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           new IconButton(

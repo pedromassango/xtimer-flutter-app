@@ -12,7 +12,7 @@ class TimerPage extends StatefulWidget {
   _TimerPageState createState() => _TimerPageState();
 }
 
-class _TimerPageState extends State<TimerPage> {
+class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMixin {
   Task getTask() => widget.task;
 
   /// Store button state
@@ -26,11 +26,29 @@ class _TimerPageState extends State<TimerPage> {
 
   /// The task timer
   int timer;
+  Animation<double> heightSize;
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      duration: Duration(seconds: 5),
+      vsync: this,
+    );
+    heightSize = new Tween(begin: 800.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
     _restartCountDown();
+  }
+
+  @override
+  void dispose(){
+    _controller.dispose();
+    super.dispose();
   }
 
   void _restartCountDown() {
@@ -45,18 +63,20 @@ class _TimerPageState extends State<TimerPage> {
     setState(() {
       if (started) {
         buttonText = 'resume';
+        _controller.forward();
       } else {
         buttonText = 'start';
+        _controller.reset();
       }
-
       started = !started;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: getTask().color,
+      backgroundColor: Colors.black54,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: getTask().color,
@@ -77,50 +97,64 @@ class _TimerPageState extends State<TimerPage> {
               color: Colors.white70,
             ),
             onPressed: _restartCountDown,
-          )
+          ),
         ],
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 80.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: <Widget>[
+          AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child){
+              return Container(
+                height: heightSize.value,
+                width: double.infinity,
+                color: getTask().color,
+              );
+            },
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 80.0),
+            child: Center(
+              child: Column(
                 children: <Widget>[
+                  new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        time.toString(),
+                        style: TextStyle(fontSize: 54.0, color: Colors.white),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          'm',
+                          style: TextStyle(fontSize: 25.0, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
                   Text(
-                    time.toString(),
-                    style: TextStyle(fontSize: 54.0, color: Colors.white),
+                    'Left on this Task',
+                    style: TextStyle(color: Colors.white70),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Text(
-                      'm',
-                      style: TextStyle(fontSize: 25.0, color: Colors.white),
+                    margin: EdgeInsets.only(top: 160.0),
+                    child: GestureDetector(
+                      child: RoundedButton(
+                        text: buttonText,
+                      ),
+                      onTap: () {
+                        setState(() {
+                          _playPause();
+                        });
+                      },
                     ),
                   )
                 ],
               ),
-              Text(
-                'Left on this Task',
-                style: TextStyle(color: Colors.white70),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 160.0),
-                child: GestureDetector(
-                  child: RoundedButton(
-                    text: buttonText,
-                  ),
-                  onTap: () {
-                    setState(() {
-                      _playPause();
-                    });
-                  },
-                ),
-              )
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

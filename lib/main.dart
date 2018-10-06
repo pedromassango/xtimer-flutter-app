@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xtimer/pages/new_task_page.dart';
 import 'package:xtimer/pages/splash_page.dart';
 import 'package:xtimer/pages/home_page.dart';
 import 'package:xtimer/pages/timer_page.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/home': (BuildContext context) => HomePage(),
         //'/timer': (BuildContext context) => TimerPage()
+        '/new': (context) => NewTaskPage(),
       },
     );
   }
