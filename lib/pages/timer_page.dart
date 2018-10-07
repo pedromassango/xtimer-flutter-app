@@ -75,32 +75,11 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.black54,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: getTask().color,
-        leading: IconButton(
-            icon: Icon(
-              Icons.navigate_before,
-              size: 40.0,
-              color: Colors.white70,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.sync,
-              size: 32.0,
-              color: Colors.white70,
-            ),
-            onPressed: _restartCountDown,
-          ),
-        ],
-      ),
       body: Stack(
+
         children: <Widget>[
           AnimatedBuilder(
             animation: _controller,
@@ -112,8 +91,33 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
               );
             },
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24.0, left: 4.0, right: 4.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                    icon: Icon(
+                      Icons.navigate_before,
+                      size: 40.0,
+                      color: Colors.white70,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    }),
+                Spacer(),
+                IconButton(
+                  icon: Icon(
+                    Icons.sync,
+                    size: 32.0,
+                    color: Colors.white70,
+                  ),
+                  onPressed: _restartCountDown,
+                ),
+              ],
+            ),
+          ),
           Container(
-            margin: EdgeInsets.only(top: 80.0),
+            margin: EdgeInsets.only(top: 120.0),
             child: Center(
               child: Column(
                 children: <Widget>[
@@ -138,7 +142,7 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
                     style: TextStyle(color: Colors.white70),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 160.0),
+                    margin: EdgeInsets.only(top: 220.0),
                     child: GestureDetector(
                       child: RoundedButton(
                         text: buttonText,
