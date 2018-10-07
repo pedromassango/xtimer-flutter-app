@@ -8,7 +8,7 @@ import 'package:xtimer/model/task_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
-  final String title = 'X - Timer';
+  final String title = 'Task Timer';
 
   @override
   _HomePageState createState() => _HomePageState();
