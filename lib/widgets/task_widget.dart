@@ -8,7 +8,7 @@ class TaskWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 8.0,left: 8.0),
+      margin: EdgeInsets.only(top: 10.0, bottom: 10.0, right: 16.0,left: 16.0),
       padding: EdgeInsets.only(left: 8.0, top: 24.0, bottom: 24.0, right: 8.0),
       decoration: new BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),

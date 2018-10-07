@@ -33,7 +33,7 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 4),
       vsync: this,
     );
     heightSize = new Tween(begin: 800.0, end: 0.0).animate(
