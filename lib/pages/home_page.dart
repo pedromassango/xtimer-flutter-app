@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   /// When called start timer Screen
   void _startTimerPage(Task task) {
     Navigator.of(context, rootNavigator: true).push(
-        new CupertinoPageRoute<bool>(
+        CupertinoPageRoute<bool>(
             fullscreenDialog: true,
             builder: (buildContext) => TimerPage(task: task)));
     //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
@@ -54,18 +54,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+      appBar: AppBar(
         centerTitle: false,
         elevation: 0.0,
         backgroundColor: Colors.transparent,
-        title: new Text(
+        title: Text(
           widget.title,
           style: TextStyle(
-              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
+              color: Colors.black, fontSize: 34.0, fontWeight: FontWeight.bold),
         ),
-        //TODO: leading: Icon(Icons.menu, color: Colors.black,),
         actions: <Widget>[
-          new IconButton(
+          IconButton(
             icon: Icon(
               Icons.add,
               color: Colors.black,
