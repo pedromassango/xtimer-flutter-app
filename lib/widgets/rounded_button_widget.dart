@@ -13,8 +13,8 @@ class _RoundedButtonState extends State<RoundedButton>{
   @override
   Widget build(BuildContext context) {
     return new Container(
-      width: 160.0,
-      height: 160.0,
+      width: 150.0,
+      height: 150.0,
       decoration: new BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(100.0),
