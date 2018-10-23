@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/services.dart';
+
 class SplashPage extends StatefulWidget {
   SplashPage({Key key}) : super(key: key);
 
@@ -22,6 +24,9 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    // Set this screen as a fullscreen
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     startTimer();
   }
 
