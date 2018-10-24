@@ -12,7 +12,8 @@ class TimerPage extends StatefulWidget {
   _TimerPageState createState() => _TimerPageState();
 }
 
-class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMixin {
+class _TimerPageState extends State<TimerPage>
+    with SingleTickerProviderStateMixin {
   Task getTask() => widget.task;
 
   /// Store button state
@@ -27,6 +28,7 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
 
   // Status Text
   String statusText = "Left on this Task";
+
   /// The task timer
   int timer;
   Animation<double> heightSize;
@@ -38,7 +40,6 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
     _controller = AnimationController(
       duration: Duration(seconds: 4),
       vsync: this,
-
     );
 
     heightSize = new Tween(begin: 800.0, end: 0.0).animate(
@@ -49,23 +50,22 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
     );
     _restartCountDown();
   }
-  startTimer() async{
+
+  startTimer() async {
     print("Timer started..");
-    new Timer.periodic(new Duration(seconds: 60), (timer){
+    new Timer.periodic(new Duration(seconds: 60), (timer) {
       setState(() {
         time--;
-      }
-      );
-      if(time==0){
+      });
+      if (time == 0) {
         timer.cancel();
         statusText = "Times up";
       }
     });
-
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _controller.dispose();
     super.dispose();
   }
@@ -98,11 +98,10 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
     return Scaffold(
       backgroundColor: Colors.black54,
       body: Stack(
-
         children: <Widget>[
           AnimatedBuilder(
             animation: _controller,
-            builder: (context, child){
+            builder: (context, child) {
               return Container(
                 height: heightSize.value,
                 width: double.infinity,

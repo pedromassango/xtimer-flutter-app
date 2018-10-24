@@ -11,16 +11,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   startTimer() async {
-
     // pause for a while then start home screen
     var duration = Duration(seconds: 3);
     return Timer(duration, () {
       Navigator.pushReplacementNamed(context, '/home');
     });
   }
-  
+
   @override
   void initState() {
     super.initState();
