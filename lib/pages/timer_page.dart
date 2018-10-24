@@ -19,11 +19,14 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
   bool started = false;
 
   /// Store the time
+  /// You will pass the minutes.
   int time;
 
   /// Button text
   String buttonText = 'Start';
 
+  // Status Text
+  String statusText = "Left on this Task";
   /// The task timer
   int timer;
   Animation<double> heightSize;
@@ -35,7 +38,9 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
     _controller = AnimationController(
       duration: Duration(seconds: 4),
       vsync: this,
+
     );
+
     heightSize = new Tween(begin: 800.0, end: 0.0).animate(
       CurvedAnimation(
         parent: _controller,
@@ -43,6 +48,20 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
       ),
     );
     _restartCountDown();
+  }
+  startTimer() async{
+    print("Timer started..");
+    new Timer.periodic(new Duration(seconds: 60), (timer){
+      setState(() {
+        time--;
+      }
+      );
+      if(time==0){
+        timer.cancel();
+        statusText = "Times up";
+      }
+    });
+
   }
 
   @override
@@ -138,7 +157,7 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
                     ],
                   ),
                   Text(
-                    'Left on this Task',
+                    statusText,
                     style: TextStyle(color: Colors.white70),
                   ),
                   Container(
@@ -148,9 +167,11 @@ class _TimerPageState extends State<TimerPage> with SingleTickerProviderStateMix
                         text: buttonText,
                       ),
                       onTap: () {
+                        /*
                         setState(() {
                           _playPause();
-                        });
+                        });*/
+                        startTimer();
                       },
                     ),
                   )
