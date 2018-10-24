@@ -60,6 +60,7 @@ class _TimerPageState extends State<TimerPage>
       if (time == 0) {
         timer.cancel();
         statusText = "Times up";
+        buttonText = "start";
       }
     });
   }
