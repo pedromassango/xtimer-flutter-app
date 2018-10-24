@@ -12,7 +12,7 @@ A Timer app made with Flutter. Fork it, build it keep it open-source. Pull reque
 - [x] New Task
 - [x] Timer Screen
 - [x] Add Countdown timer
-- [ ] Improve Timer
+- [ ] Improve Countdown Timer
 
 ## Getting Started
 
