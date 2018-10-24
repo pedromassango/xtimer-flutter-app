@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
+import 'package:xtimer/controllers/task_manager.dart';
 
 class NewTaskPage extends StatefulWidget {
   final String title = 'New Task';
@@ -16,11 +17,13 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
   /// When called, save task and close this screen
   void _saveTaskAndClose() {
-    //TODO: save task in database
-    //int minutes = int.parse(_timeController.text);
-    //String title = _titleController.text;
+    //Save task in database
+    int minutes = int.parse(_timeController.text);
+    String title = _titleController.text;
 
-    //var task = new Task(Colors.brown, title, minutes);
+    var task = new Task(Colors.brown, title, minutes);
+
+    TaskManager.addNewTask(task);
 
     // close screen
     Navigator.of(context).pop();

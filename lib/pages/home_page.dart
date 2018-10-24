@@ -6,6 +6,7 @@ import 'package:xtimer/pages/new_task_page.dart';
 import 'package:flutter/services.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:xtimer/controllers/task_manager.dart';
 
 class HomePage extends StatefulWidget {
   final String title = 'Task Timer';
@@ -15,20 +16,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  static DateTime now() => DateTime.now();
-  
-  /// A set of tasks
-  List<Task> tasksList = [
-    Task(Colors.green, 'Study', now().minute),
-    Task(Colors.red, 'Workout', now().minute),
-    Task(Colors.purple, 'Pratice Flutter', now().minute),
-    Task(Colors.amber, 'Read about Bitcoin', now().minute),
-    Task(Colors.blue, 'Pratice Piano', now().minute),
-    Task(Colors.deepOrange, 'Learn English', now().minute),
-    Task(Colors.teal, 'Meditation', now().minute),
-    Task(Colors.deepPurple, 'Read about Bitcoin', now().minute),
-  ];
+
+  //Construction of taks list
+  List<Task> tasksList = TaskManager.tasksList;
 
   @override
   void initState() {
