@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
 
+import 'package:xtimer/controllers/task_manager.dart';
+
 class NewTaskPage extends StatefulWidget {
   final String title = 'New Task';
 
@@ -9,20 +11,19 @@ class NewTaskPage extends StatefulWidget {
 }
 
 class _NewTaskPageState extends State<NewTaskPage> {
-
   TextEditingController _titleController, _timeController;
   // Max title lenght
   int maxTitleLength = 25;
 
   /// When called, save task and close this screen
-  void _saveTaskAndClose(){
+  void _saveTaskAndClose() {
+    //Save task in database
+    int minutes = int.parse(_timeController.text);
+    String title = _titleController.text;
 
-    //TODO: save task in database
-    //int minutes = int.parse(_timeController.text);
-    //String title = _titleController.text;
+    var task = new Task(Colors.brown, title, minutes);
 
-    //var task = new Task(Colors.brown, title, minutes);
-
+    TaskManager.addNewTask(task);
 
     // close screen
     Navigator.of(context).pop();
@@ -47,7 +48,8 @@ class _NewTaskPageState extends State<NewTaskPage> {
         title: new Text(
           widget.title,
           //style: TextStyle(color: Colors.black),
-          style: TextStyle(color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           new IconButton(
@@ -68,29 +70,28 @@ class _NewTaskPageState extends State<NewTaskPage> {
             new TextField(
               maxLength: maxTitleLength,
               controller: _titleController,
-              style: TextStyle(fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold),
               decoration: InputDecoration(
-                hintText: 'Name',
-                counterText: maxTitleLength.toString(),
-                filled: true
-              ),
+                  hintText: 'Name',
+                  counterText: maxTitleLength.toString(),
+                  filled: true),
             ),
-
             Container(
               alignment: Alignment.topLeft,
               margin: EdgeInsets.only(top: 32.0, left: 70.0, right: 70.0),
               child: new TextField(
                 maxLength: 3,
-                keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
+                keyboardType: TextInputType.numberWithOptions(
+                    decimal: false, signed: false),
                 controller: _timeController,
                 style: TextStyle(fontSize: 14.0, color: Colors.black),
                 decoration: InputDecoration(
-                  hintText: 'Time (in minutes)',
-                  filled: true
-                ),
+                    hintText: 'Time (in minutes)', filled: true),
               ),
             )
-
           ],
         ),
       ),

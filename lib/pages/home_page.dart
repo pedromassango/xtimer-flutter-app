@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:xtimer/controllers/task_manager.dart';
+
 class HomePage extends StatefulWidget {
   final String title = 'Task Timer';
 
@@ -15,20 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  static DateTime now() => DateTime.now();
-  
-  /// A set of tasks
-  List<Task> tasksList = [
-    Task(Colors.green, 'Study', now().minute),
-    Task(Colors.red, 'Workout', now().minute),
-    Task(Colors.purple, 'Pratice Flutter', now().minute),
-    Task(Colors.amber, 'Read about Bitcoin', now().minute),
-    Task(Colors.blue, 'Pratice Piano', now().minute),
-    Task(Colors.deepOrange, 'Learn English', now().minute),
-    Task(Colors.teal, 'Meditation', now().minute),
-    Task(Colors.deepPurple, 'Read about Bitcoin', now().minute),
-  ];
+  //Construction of task list
+  List<Task> tasksList = TaskManager.tasksList;
 
   @override
   void initState() {
@@ -44,10 +34,9 @@ class _HomePageState extends State<HomePage> {
 
   /// When called start timer Screen
   void _startTimerPage(Task task) {
-    Navigator.of(context, rootNavigator: true).push(
-        CupertinoPageRoute<bool>(
-            fullscreenDialog: true,
-            builder: (buildContext) => TimerPage(task: task)));
+    Navigator.of(context, rootNavigator: true).push(CupertinoPageRoute<bool>(
+        fullscreenDialog: true,
+        builder: (buildContext) => TimerPage(task: task)));
     //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
   }
 

@@ -1,0 +1,4 @@
+#Wed Oct 24 00:29:15 CLST 2018
+base.0=C\:\\Users\\ASUS\\Desktop\\Flutter\\xtimer-flutter-app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
