@@ -57,10 +57,9 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         color: Colors.white,
-        margin: EdgeInsets.all(8),
+        margin: EdgeInsets.only(left: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -88,7 +87,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                     Text('Time (minutes)',
                       maxLines: 1,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 22,
                       ),
                     ),
                     Padding(
@@ -116,7 +115,6 @@ class _NewTaskPageState extends State<NewTaskPage> {
             )
           ],
         ),
-      ),
     );
   }
 }
