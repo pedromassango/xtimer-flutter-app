@@ -59,6 +59,8 @@ class _NewTaskPageState extends State<NewTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.white,
+        margin: EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -70,10 +72,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
               decoration: InputDecoration(
-                fillColor: Colors.white,
                   hintText: 'Task title',
                   counterText: maxTitleLength.toString(),
                   filled: true,
+                fillColor: Colors.white
               ),
             ),
             Spacer(),
@@ -83,10 +85,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
                 alignment: Alignment.center,
                 child: Column(
                   children: <Widget>[
-                    Text('Pick time (minutes)',
+                    Text('Minutes for this task',
                       maxLines: 1,
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 20,
                       ),
                     ),
                     Padding(
