@@ -13,8 +13,8 @@ class _RoundedButtonState extends State<RoundedButton>{
   @override
   Widget build(BuildContext context) {
     return new Container(
-      width: 150.0,
-      height: 150.0,
+      width: 140.0,
+      height: 140.0,
       decoration: new BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(100.0),
@@ -28,7 +28,7 @@ class _RoundedButtonState extends State<RoundedButton>{
       child: Center(
         child: Text(widget.text.toUpperCase(),
           style: TextStyle(
-              fontSize: 24.0,
+              fontSize: 22.0,
           ),
         ),
       ),

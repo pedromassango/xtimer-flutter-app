@@ -1,3 +1,4 @@
+import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:xtimer/widgets/rounded_button_widget.dart';
@@ -16,88 +17,93 @@ class _TimerPageState extends State<TimerPage>
     with SingleTickerProviderStateMixin {
   Task getTask() => widget.task;
 
-  /// Store button state
-  bool started = false;
-
   /// Store the time
   /// You will pass the minutes.
   int time;
-
-  /// Button text
+  String timeText = '00:00';
   String buttonText = 'Start';
-
-  // Status Text
   String statusText = "Left on this Task";
 
-  /// The task timer
-  int timer;
+  Stopwatch stopwatch = Stopwatch();
+  static const delay = Duration(seconds: 1);
+
+  /// for animation
   Animation<double> heightSize;
   AnimationController _controller;
+
+  /// Called each time the time is ticking
+  void updateClock(){
+    print('--updateClock()--');
+
+    var currentMinute = stopwatch.elapsed.inMinutes;
+
+    setState(() {
+      timeText = '${currentMinute.toString().padLeft(2,"0")}:${((stopwatch.elapsed.inSeconds%60)).toString().padLeft(2, '0')}';
+    });
+
+    if (stopwatch.isRunning) {
+      setState(() {
+
+        statusText = "${getTask().minutes-currentMinute} minutes left";
+        buttonText = "Running";
+      });
+    }else if(stopwatch.elapsed.inSeconds == 0){
+      setState(() {
+        timeText = '${getTask().minutes}:00';
+        statusText = "Left on this Task";
+        buttonText = "Start";
+      });
+    }else{
+      setState(() {
+        statusText = 'Paused';
+        buttonText = "Paused";
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
-      duration: Duration(seconds: 4),
+      duration: Duration(minutes: getTask().minutes),
       vsync: this,
     );
 
-    heightSize = new Tween(begin: 800.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
-    );
-    _restartCountDown();
-  }
-
-  startTimer() async {
-    print("Timer started..");
-    new Timer.periodic(new Duration(seconds: 60), (timer) {
-      setState(() {
-        time--;
-      });
-      if (time == 0) {
-        timer.cancel();
-        statusText = "Times up";
-        buttonText = "start";
-      }
+    _controller.addStatusListener((state){
+      print('-----animation state: $state');
     });
+    
+    Timer.periodic(delay, (Timer t) => updateClock());
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    stopwatch.stop();
     super.dispose();
   }
 
   void _restartCountDown() {
-    setState(() {
-      started = false;
-      time = getTask().date;
-      buttonText = 'start';
-    });
-  }
-
-  void _playPause() {
-    setState(() {
-      if (started) {
-        buttonText = 'resume';
-        _controller.forward();
-      } else {
-        buttonText = 'start';
-        _controller.reset();
-      }
-      started = !started;
-    });
+    _controller.reset();
+    stopwatch.stop();
+    stopwatch.reset();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double screenHeight = MediaQuery.of(context).size.height;
+    heightSize = new Tween(
+        end: 0.0,
+        begin: MediaQuery.of(context).size.height
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
 
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Color(0xFF212121),
       body: Stack(
         children: <Widget>[
           AnimatedBuilder(
@@ -136,25 +142,13 @@ class _TimerPageState extends State<TimerPage>
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 120.0),
+            margin: EdgeInsets.only(top: 130.0),
             child: Center(
               child: Column(
                 children: <Widget>[
-                  new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        time.toString(),
-                        style: TextStyle(fontSize: 54.0, color: Colors.white),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: Text(
-                          'm',
-                          style: TextStyle(fontSize: 25.0, color: Colors.white),
-                        ),
-                      ),
-                    ],
+                  Text(
+                    timeText,
+                    style: TextStyle(fontSize: 54.0, color: Colors.white),
                   ),
                   Text(
                     statusText,
@@ -163,18 +157,21 @@ class _TimerPageState extends State<TimerPage>
                   Container(
                     margin: EdgeInsets.only(top: 200.0),
                     child: GestureDetector(
-                      child: RoundedButton(
-                        text: buttonText,
-                      ),
-                      onTap: () {
-                        /*
-                        setState(() {
-                          _playPause();
-                        });*/
-                        startTimer();
-                      },
-                    ),
-                  )
+                        child: RoundedButton(text: buttonText),
+                        onTap: () {
+                          if (stopwatch.isRunning) {
+                            print('--Paused--');
+                            stopwatch.stop();
+                            _controller.stop(canceled: false);
+                          } else {
+                            print('--Running--');
+                            stopwatch.start();
+                            _controller.forward();
+                          }
+
+                          updateClock();
+                        }),
+                  ),
                 ],
               ),
             ),
