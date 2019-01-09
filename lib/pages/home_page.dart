@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 32.0),
+        margin: EdgeInsets.only(top: 24.0),
         child: ListView.builder(
           itemCount: tasksList.length,
           scrollDirection: Axis.vertical,
