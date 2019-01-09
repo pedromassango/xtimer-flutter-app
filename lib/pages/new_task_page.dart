@@ -12,8 +12,8 @@ class NewTaskPage extends StatefulWidget {
 class _NewTaskPageState extends State<NewTaskPage> {
   TextEditingController _titleController, _timeController;
 
-  // Max title lenght
-  int maxTitleLength = 25;
+  // Max title length
+  int maxTitleLength = 30;
 
   /// When called, save task and close this screen
   void _saveTaskAndClose() {
