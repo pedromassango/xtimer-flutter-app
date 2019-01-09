@@ -85,7 +85,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                 alignment: Alignment.center,
                 child: Column(
                   children: <Widget>[
-                    Text('Minutes for this task',
+                    Text('Time (minutes)',
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 20,
