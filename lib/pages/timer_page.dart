@@ -1,4 +1,3 @@
-import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:xtimer/widgets/rounded_button_widget.dart';
@@ -19,7 +18,6 @@ class _TimerPageState extends State<TimerPage>
 
   /// Store the time
   /// You will pass the minutes.
-  int time;
   String timeText = '00:00';
   String buttonText = 'Start';
   String statusText = "Left on this Task";
