@@ -20,6 +20,8 @@ class _HomePageState extends State<HomePage> {
   //Construction of taks list
   List<Task> tasksList = TaskManager.tasksList;
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -41,9 +43,33 @@ class _HomePageState extends State<HomePage> {
     //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
   }
 
+  void _openBottomSheet(){
+    showModalBottomSheet(
+        context: context,
+        builder: (context){
+      return Container(
+        color: Color(0xFF737373),
+        child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16)
+                )
+            ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: NewTaskPage(),
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: false,
         elevation: 0.0,
@@ -60,12 +86,12 @@ class _HomePageState extends State<HomePage> {
               color: Colors.black,
               size: 32.0,
             ),
-            onPressed: _startNewTaskPage,
+            onPressed: _openBottomSheet,
           ),
         ],
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 32.0),
+        margin: EdgeInsets.only(top: 24.0),
         child: ListView.builder(
           itemCount: tasksList.length,
           scrollDirection: Axis.vertical,

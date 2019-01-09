@@ -1,71 +1,67 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:xtimer/controllers/task_manager.dart';
+import 'package:xtimer/widgets/numberpicker.dart';
 
 class NewTaskPage extends StatefulWidget {
-  final String title = 'New Task';
 
   @override
   _NewTaskPageState createState() => _NewTaskPageState();
 }
 
 class _NewTaskPageState extends State<NewTaskPage> {
-  TextEditingController _titleController, _timeController;
+  TextEditingController _titleController;
 
-  // Max title lenght
-  int maxTitleLength = 25;
+  // time in minutes
+  static const  int MAX_MINUTE_ALLOWED = 120;
+
+  // Max task title length
+  int maxTitleLength = 30;
+  int _selectedTime = 30;
+
+  Color getRandomColor(){
+    Random r = Random();
+    var colorsList = Colors.primaries;
+
+    return colorsList.elementAt(
+        r.nextInt(colorsList.length)
+    );
+  }
 
   /// When called, save task and close this screen
-  void _saveTaskAndClose() {
-    //Save task in database
-    int minutes = int.parse(_timeController.text);
+  _saveTaskAndClose() {
+
     String title = _titleController.text;
+    var color = getRandomColor();
+    var task = new Task(color, title, _selectedTime);
 
-    var task = new Task(Colors.brown, title, minutes);
-
+    // save task and close screen
     TaskManager.addNewTask(task);
-
-    // close screen
     Navigator.of(context).pop();
   }
 
   @override
   void initState() {
     super.initState();
-
-    _timeController = new TextEditingController(text: '');
     _titleController = new TextEditingController(text: '');
   }
 
   @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: new AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: false,
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        title: new Text(
-          widget.title,
-          //style: TextStyle(color: Colors.black),
-          style: TextStyle(
-              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
-        ),
-        actions: <Widget>[
-          new IconButton(
-            icon: Icon(
-              Icons.done,
-              color: Colors.black,
-              size: 32.0,
-            ),
-            onPressed: _saveTaskAndClose,
-          )
-        ],
-      ),
-      body: Container(
-        margin: EdgeInsets.only(top: 90.0),
-        padding: EdgeInsets.only(left: 40.0, right: 40.0),
+    return Container(
+        color: Colors.white,
+        margin: EdgeInsets.only(left: 16, right: 16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             new TextField(
               maxLength: maxTitleLength,
@@ -75,26 +71,50 @@ class _NewTaskPageState extends State<NewTaskPage> {
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
               decoration: InputDecoration(
-                  hintText: 'Name',
+                  hintText: 'Task title',
                   counterText: maxTitleLength.toString(),
-                  filled: true),
-            ),
-            Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.only(top: 32.0, left: 70.0, right: 70.0),
-              child: new TextField(
-                maxLength: 3,
-                keyboardType: TextInputType.numberWithOptions(
-                    decimal: false, signed: false),
-                controller: _timeController,
-                style: TextStyle(fontSize: 14.0, color: Colors.black),
-                decoration: InputDecoration(
-                    hintText: 'Time (in minutes)', filled: true),
+                  filled: true,
+                fillColor: Colors.white
               ),
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: (){},
+              child: Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    Text('Time (minutes)',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: NumberPicker.horizontal(
+                          initialValue: _selectedTime,
+                          minValue: 10,
+                          maxValue: MAX_MINUTE_ALLOWED,
+                          step: 10,
+                          onChanged: (value){
+                            setState(() => _selectedTime = value);
+                          }
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Spacer(),
+
+            MaterialButton(
+              minWidth: double.maxFinite,
+                onPressed: _saveTaskAndClose,
+              child: Text('Save Task'),
             )
           ],
         ),
-      ),
     );
   }
 }
