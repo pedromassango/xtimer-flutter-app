@@ -161,7 +161,7 @@ class _TimerPageState extends State<TimerPage>
                     style: TextStyle(color: Colors.white70),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 220.0),
+                    margin: EdgeInsets.only(top: 200.0),
                     child: GestureDetector(
                       child: RoundedButton(
                         text: buttonText,
