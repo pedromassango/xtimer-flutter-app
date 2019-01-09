@@ -47,7 +47,22 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         context: context,
         builder: (context){
-      return NewTaskPage();
+      return Container(
+        color: Color(0xFF737373),
+        child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16),
+                    topRight: Radius.circular(16)
+                )
+            ),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: NewTaskPage(),
+          ),
+        ),
+      );
     });
   }
 
