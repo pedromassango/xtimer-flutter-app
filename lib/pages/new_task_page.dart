@@ -68,8 +68,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
               controller: _titleController,
               style: TextStyle(
                   fontSize: 24.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+                  color: Colors.black,),
               decoration: InputDecoration(
                   hintText: 'Task title',
                   counterText: maxTitleLength.toString(),
