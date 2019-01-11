@@ -12,7 +12,7 @@ class DemoBody extends StatefulWidget {
   final Color color;
 
   DemoBody(
-      {Key key, @required this.size, this.xOffset, this.yOffset, this.color})
+      {Key key, @required this.size, this.xOffset = 0, this.yOffset = 0, this.color})
       : super(key: key);
 
   @override
@@ -42,8 +42,8 @@ class _DemoBodyState extends State<DemoBody> with TickerProviderStateMixin {
             sin((animationController.value * 360 - i) %
                 360 *
                 Vector.degrees2Radians) *
-                20 +
-                50 +
+                10 +
+                30 +
                 widget.yOffset));
       }
     });
