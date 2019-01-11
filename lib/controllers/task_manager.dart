@@ -7,10 +7,10 @@ class TaskManager {
 
   /// A set of tasks
   static List<Task> tasksList = [
-    Task(Colors.purple, 'Pratice Flutter', now().minute),
-    Task(Colors.amber, 'Read about Bitcoin', now().minute),
-    Task(Colors.deepOrange, 'Learn English', now().minute),
-    Task(Colors.teal, 'Meditation', now().minute),
+    Task(Colors.purple, 'Pratice Flutter', 1),
+    Task(Colors.amber, 'Read about Bitcoin', 3),
+    Task(Colors.deepOrange, 'Learn English', 2),
+    Task(Colors.teal, 'Meditation', 5),
   ];
 
   static addNewTask(Task task) => tasksList.add(task);
