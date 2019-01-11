@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
 import 'package:xtimer/widgets/rounded_button_widget.dart';
 import 'dart:async';
+
+import 'package:xtimer/widgets/wave_animation.dart';
 
 class TimerPage extends StatefulWidget {
   final Task task;
@@ -14,16 +17,18 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage>
     with SingleTickerProviderStateMixin {
+  Timer timer;
+
   Task getTask() => widget.task;
 
   /// Store the time
   /// You will pass the minutes.
-  String timeText = '00:00';
+  String timeText = '';
   String buttonText = 'Start';
   String statusText = "Left on this Task";
 
   Stopwatch stopwatch = Stopwatch();
-  static const delay = Duration(seconds: 1);
+  static const delay = Duration(microseconds: 1);
 
   /// for animation
   Animation<double> heightSize;
@@ -32,6 +37,15 @@ class _TimerPageState extends State<TimerPage>
   /// Called each time the time is ticking
   void updateClock(){
     print('--updateClock()--');
+
+    // if time is up, stop the timer
+    if(stopwatch.elapsed.inMinutes == getTask().minutes){
+      if(Navigator.canPop(context)){
+        print('--finished Timer Page--');
+        Navigator.pop(context);
+      }
+      return;
+    }
 
     var currentMinute = stopwatch.elapsed.inMinutes;
 
@@ -72,7 +86,7 @@ class _TimerPageState extends State<TimerPage>
       print('-----animation state: $state');
     });
     
-    Timer.periodic(delay, (Timer t) => updateClock());
+    timer = Timer.periodic(delay, (Timer t) => updateClock());
   }
 
   @override
@@ -90,14 +104,20 @@ class _TimerPageState extends State<TimerPage>
 
   @override
   Widget build(BuildContext context) {
+
     heightSize = new Tween(
-        end: 0.0,
-        begin: MediaQuery.of(context).size.height
+        begin: 0.0,
+        end: MediaQuery.of(context).size.height-65
     ).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
       ),
+    );
+
+    Size size = new Size(
+        MediaQuery.of(context).size.width,
+        heightSize.value
     );
 
     return Scaffold(
@@ -107,10 +127,9 @@ class _TimerPageState extends State<TimerPage>
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              return Container(
-                height: heightSize.value,
-                width: double.infinity,
-                color: getTask().color,
+              return DemoBody(
+                  size: size,
+                  color: getTask().color
               );
             },
           ),
@@ -140,7 +159,7 @@ class _TimerPageState extends State<TimerPage>
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 130.0),
+            margin: EdgeInsets.only(top: 150.0),
             child: Center(
               child: Column(
                 children: <Widget>[
