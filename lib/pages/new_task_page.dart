@@ -61,55 +61,61 @@ class _NewTaskPageState extends State<NewTaskPage> {
         color: Colors.white,
         margin: EdgeInsets.only(left: 16, right: 16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new TextField(
-              maxLength: maxTitleLength,
-              controller: _titleController,
-              style: TextStyle(
-                  fontSize: 24.0,
-                  color: Colors.black,),
-              decoration: InputDecoration(
-                  hintText: 'Task title',
-                  counterText: maxTitleLength.toString(),
-                  filled: true,
-                fillColor: Colors.white
-              ),
-            ),
-            Spacer(),
-            GestureDetector(
-              onTap: (){},
-              child: Container(
-                alignment: Alignment.center,
-                child: Column(
-                  children: <Widget>[
-                    Text('Time (minutes)',
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 22,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: NumberPicker.horizontal(
-                          initialValue: _selectedTime,
-                          minValue: 10,
-                          maxValue: MAX_MINUTE_ALLOWED,
-                          step: 10,
-                          onChanged: (value){
-                            setState(() => _selectedTime = value);
-                          }
-                      ),
-                    ),
-                  ],
+            ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                new TextField(
+                  maxLength: maxTitleLength,
+                  controller: _titleController,
+                  style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.black,),
+                  decoration: InputDecoration(
+                      hintText: 'Task title',
+                      counterText: maxTitleLength.toString(),
+                      filled: true,
+                    fillColor: Colors.white
+                  ),
                 ),
-              ),
+                //Spacer(),
+                GestureDetector(
+                  onTap: (){},
+                  child: Container(
+                    margin: EdgeInsets.only(top: 32),
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: <Widget>[
+                        Text('Time (minutes)',
+                          maxLines: 1,
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: NumberPicker.horizontal(
+                              initialValue: _selectedTime,
+                              minValue: 10,
+                              maxValue: MAX_MINUTE_ALLOWED,
+                              step: 10,
+                              onChanged: (value){
+                                setState(() => _selectedTime = value);
+                              }
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
+
             Spacer(),
 
             MaterialButton(
               minWidth: double.maxFinite,
-                onPressed: _saveTaskAndClose,
+              onPressed: _saveTaskAndClose,
               child: Text('Save Task'),
             )
           ],
