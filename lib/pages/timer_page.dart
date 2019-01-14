@@ -31,6 +31,7 @@ class _TimerPageState extends State<TimerPage>
   static const delay = Duration(microseconds: 1);
 
   /// for animation
+  var begin = 0.0;
   Animation<double> heightSize;
   AnimationController _controller;
 
@@ -97,16 +98,18 @@ class _TimerPageState extends State<TimerPage>
   }
 
   void _restartCountDown() {
+    begin = 0.0;
     _controller.reset();
     stopwatch.stop();
     stopwatch.reset();
   }
 
+
   @override
   Widget build(BuildContext context) {
 
     heightSize = new Tween(
-        begin: 0.0,
+        begin: begin,
         end: MediaQuery.of(context).size.height-65
     ).animate(
       CurvedAnimation(
@@ -182,6 +185,7 @@ class _TimerPageState extends State<TimerPage>
                             _controller.stop(canceled: false);
                           } else {
                             print('--Running--');
+                            begin = 50.0;
                             stopwatch.start();
                             _controller.forward();
                           }
