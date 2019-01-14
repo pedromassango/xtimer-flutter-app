@@ -1,8 +1,12 @@
 # xTimer
 
-A Timer app made with Flutter. Fork it, build it keep it open-source. Pull request is always welcome. I want to see this app on Play Store with your help.
+A Timer app made with Flutter. Fork it, build it keep it open-source. Pull request is always welcome.
 
-## Current State
+App available on PlayStore: https://play.google.com/store/apps/details?id=com.pedromassango.xtimer
+
+
+
+## Current State ( old images)
 
 <img src="/screenshots/img1.png" width="260" height="480"> <img src="/screenshots/img2.png" width="260" height="480">
 
