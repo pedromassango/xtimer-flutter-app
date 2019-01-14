@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:xtimer/widgets/task_widget.dart';
 import 'package:xtimer/pages/timer_page.dart';
@@ -17,16 +19,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  //Construction of taks list
-  List<Task> tasksList = TaskManager.tasksList;
-
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  TaskManager taskManager = TaskManager();
+  StreamController<List<Task>> _streamController;
 
   @override
   void initState() {
     super.initState();
     // Set this screen as a fullscreen
     SystemChrome.setEnabledSystemUIOverlays([]);
+    _streamController = StreamController();
   }
 
   /// When called, start new task
@@ -43,8 +46,8 @@ class _HomePageState extends State<HomePage> {
     //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
   }
 
-  void _openBottomSheet(){
-    showModalBottomSheet(
+  void _openBottomSheet() async {
+    Task newTask = await showModalBottomSheet(
         context: context,
         builder: (context){
       return Container(
@@ -64,6 +67,15 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     });
+
+    if(newTask != null){
+      TaskManager().addNewTask(newTask);
+      var allTasks = await TaskManager().getAll();
+
+      setState((){
+        _streamController.add(allTasks);
+      });
+    }
   }
 
   @override
@@ -92,17 +104,39 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         margin: EdgeInsets.only(top: 24.0),
-        child: ListView.builder(
-          itemCount: tasksList.length,
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            var item = tasksList.elementAt(index);
-            return GestureDetector(
-              child: TaskWidget(task: item),
-              onTap: () => _startTimerPage(item),
-            );
-          },
+        child: StreamBuilder(
+            stream: taskManager.getAll().asStream(),
+            initialData: List<Task>(),
+            builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
+              var tasks = snapshot.data;
+
+              if(snapshot.connectionState != ConnectionState.done){
+                return Center(child: CircularProgressIndicator(),);
+              }
+
+              if (tasks != null && tasks.length == 0) {
+                return Center(
+                  child: Text('No Tasks',
+                    style: TextStyle(
+                      fontSize: 24
+                    ),
+                  ),
+                );
+              }else {
+                return ListView.builder(
+                  itemCount: tasks.length,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    var item = tasks.elementAt(index);
+                    return GestureDetector(
+                      child: TaskWidget(task: item),
+                      onTap: () => _startTimerPage(item),
+                    );
+                  },
+                );
+              }
+            }
         ),
       ),
     );

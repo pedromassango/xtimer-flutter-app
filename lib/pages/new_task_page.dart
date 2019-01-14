@@ -36,11 +36,11 @@ class _NewTaskPageState extends State<NewTaskPage> {
 
     String title = _titleController.text;
     var color = getRandomColor();
-    var task = new Task(color, title, _selectedTime);
+    var task = new Task(0, color, title, _selectedTime);
 
     // save task and close screen
-    TaskManager.addNewTask(task);
-    Navigator.of(context).pop();
+    //TaskManager().addNewTask(task);
+    Navigator.of(context).pop(task);
   }
 
   @override
