@@ -22,11 +22,20 @@ dependencies:
   cupertino_icons: ^0.1.2
   sqflite: ^1.0.0
   path_provider: any
+  flutter_launcher_icons: "^0.7.0"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
+flutter_launcher_icons:
+  path: ../
+
+flutter_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "images/logox.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
