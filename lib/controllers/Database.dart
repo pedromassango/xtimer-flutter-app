@@ -29,13 +29,12 @@ class DatabaseProvider{
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-          await db.execute(
-              'CREATE TABLE Task('
-                  'id INTEGER PRIMARY KEY'
-                  'color TEXT'
-                  'title INTEGER'
-                  'minutes INTEGER'
-          );
+          await db.execute('CREATE TABLE Task ('
+              'id INTEGER PRIMARY KEY,'
+              'color INTEGER,'
+              'title TEXT,'
+              'minutes INTEGER'
+              ')');
         }
     );
   }
@@ -49,7 +48,7 @@ class DatabaseProvider{
     var id = table.first['id'];
 
     var raw = db.rawInsert(
-        'INSERT into Task (id, color, title, minutes) VALUES (?,?,?,?)',
+        'INSERT Into Task (id, color, title, minutes) VALUES (?,?,?,?)',
         [id, task.color.value, task.title, task.minutes]
     );
 
