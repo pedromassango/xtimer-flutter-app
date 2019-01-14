@@ -4,6 +4,8 @@ ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
+MERGED from [:sqflite] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/sqflite/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:path_provider] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/path_provider/intermediates/manifests/full/debug/AndroidManifest.xml:2:1-7:12
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:1-39:12
@@ -67,6 +69,10 @@ uses-sdk
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml
+MERGED from [:sqflite] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/sqflite/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/sqflite/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/path_provider/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-44
+MERGED from [:path_provider] /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/build/path_provider/intermediates/manifests/full/debug/AndroidManifest.xml:5:5-44
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion

@@ -14,8 +14,9 @@ A Timer app made with Flutter. Fork it, build it keep it open-source. Pull reque
 - [x] Timer Screen
 - [x] Add Countdown timer
 - [x] Improve Countdown Timer
-- [ ] Save task in database
-- [ ] Add empty state in home page
+- [x] Save task in database
+- [x] Add empty state in home page
+- [ ] Option to delete task
 
 ## Getting Started
 
