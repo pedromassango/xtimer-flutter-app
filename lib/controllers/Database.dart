@@ -25,7 +25,7 @@ class DatabaseProvider{
   initDb() async{
 
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'task_˚timer.db');
+    String path = join(documentDirectory.path, 'task_timer.db');
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
