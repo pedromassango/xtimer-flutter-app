@@ -58,9 +58,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 300,
         color: Colors.white,
-        margin: EdgeInsets.only(left: 16, right: 16),
-        child: Column(
+        padding: EdgeInsets.only(left: 16, right: 16, bottom: 8),
+        child: Stack(
           children: <Widget>[
             ListView(
               shrinkWrap: true,
@@ -111,12 +112,15 @@ class _NewTaskPageState extends State<NewTaskPage> {
               ],
             ),
 
-            Spacer(),
+            //Spacer(),
 
-            MaterialButton(
-              minWidth: double.maxFinite,
-              onPressed: _saveTaskAndClose,
-              child: Text('Save Task'),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: MaterialButton(
+                minWidth: double.maxFinite,
+                onPressed: _saveTaskAndClose,
+                child: Text('Save Task'.toUpperCase()),
+              ),
             )
           ],
         ),
