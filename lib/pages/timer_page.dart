@@ -137,7 +137,7 @@ class _TimerPageState extends State<TimerPage>
             },
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 24.0, left: 4.0, right: 4.0),
+            padding: const EdgeInsets.only(top: 32.0, left: 4.0, right: 4.0),
             child: Row(
               children: <Widget>[
                 IconButton(
@@ -161,42 +161,49 @@ class _TimerPageState extends State<TimerPage>
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 150.0),
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    timeText,
-                    style: TextStyle(fontSize: 54.0, color: Colors.white),
-                  ),
-                  Text(
-                    statusText,
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 200.0),
-                    child: GestureDetector(
-                        child: RoundedButton(text: buttonText),
-                        onTap: () {
-                          if (stopwatch.isRunning) {
-                            print('--Paused--');
-                            stopwatch.stop();
-                            _controller.stop(canceled: false);
-                          } else {
-                            print('--Running--');
-                            begin = 50.0;
-                            stopwatch.start();
-                            _controller.forward();
-                          }
-
-                          updateClock();
-                        }),
-                  ),
-                ],
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 100),
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      timeText,
+                      style: TextStyle(fontSize: 54.0, color: Colors.white),
+                    ),
+                    Text(
+                      statusText,
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 32),
+              child: GestureDetector(
+                  child: RoundedButton(text: buttonText),
+                  onTap: () {
+                    if (stopwatch.isRunning) {
+                      print('--Paused--');
+                      stopwatch.stop();
+                      _controller.stop(canceled: false);
+                    } else {
+                      print('--Running--');
+                      begin = 50.0;
+                      stopwatch.start();
+                      _controller.forward();
+                    }
+
+                    updateClock();
+                  }),
+            ),
+          )
         ],
       ),
     );
