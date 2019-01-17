@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           widget.title,
           style: TextStyle(
-              color: Colors.black, fontSize: 34.0, fontWeight: FontWeight.bold),
+              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           IconButton(
