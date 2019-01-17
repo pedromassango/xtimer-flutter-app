@@ -28,7 +28,7 @@ class _RoundedButtonState extends State<RoundedButton>{
       child: Center(
         child: Text(widget.text.toUpperCase(),
           style: TextStyle(
-              fontSize: 22.0,
+              fontSize: 20.0,
           ),
         ),
       ),
