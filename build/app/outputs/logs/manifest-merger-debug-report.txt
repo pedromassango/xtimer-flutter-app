@@ -23,14 +23,10 @@ INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/andr
 		INJECTED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:1:11-69
-uses-permission#android.permission.INTERNET
-ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:8:5-66
-	android:name
-		ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:8:22-64
 application
 ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:15:5-38:19
 	android:label
-		ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:17:9-31
+		ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:17:9-35
 	android:icon
 		ADDED from /Users/pedromassango/AndroidStudioProjects/xtimer-flutter-app/android/app/src/main/AndroidManifest.xml:18:9-43
 	android:name
