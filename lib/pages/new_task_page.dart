@@ -35,6 +35,9 @@ class _NewTaskPageState extends State<NewTaskPage> {
   _saveTaskAndClose() {
 
     String title = _titleController.text;
+
+    if(title.trim().isEmpty) return;
+
     var color = getRandomColor();
     var task = new Task(0, color, title, _selectedTime);
 
