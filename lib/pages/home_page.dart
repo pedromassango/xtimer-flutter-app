@@ -29,12 +29,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     // Set this screen as a fullscreen
     //SystemChrome.setEnabledSystemUIOverlays([]);
+    taskManager.loadAllTasks();
     _streamController = StreamController();
-  }
-
-  /// When called, start new task
-  void _startNewTaskPage() {
-    Navigator.of(context).pushNamed('/new');
   }
 
   /// When called start timer Screen
@@ -70,7 +66,7 @@ class _HomePageState extends State<HomePage> {
 
     if(newTask != null){
       TaskManager().addNewTask(newTask);
-      var allTasks = await TaskManager().getAll();
+      var allTasks = TaskManager().loadAllTasks();
 
       setState((){
         _streamController.add(allTasks);
@@ -105,7 +101,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         margin: EdgeInsets.only(top: 24.0),
         child: StreamBuilder(
-            stream: taskManager.getAll().asStream(),
+            stream: taskManager.tasksData.asStream(),
             initialData: List<Task>(),
             builder: (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
               var tasks = snapshot.data;
@@ -116,7 +112,7 @@ class _HomePageState extends State<HomePage> {
 
               if (tasks != null && tasks.length == 0) {
                 return Center(
-                  child: Text('No Tasks',
+                  child: Text('No Tasks!',
                     style: TextStyle(
                       fontSize: 24
                     ),

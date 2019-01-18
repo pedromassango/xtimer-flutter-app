@@ -1,26 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:sqflite/sql.dart';
 import 'package:xtimer/controllers/Database.dart';
 import 'package:xtimer/model/task_model.dart';
 
 class TaskManager {
 
-  DatabaseProvider dbProvider;
+  DatabaseProvider _dbProvider;
+  Future<List<Task>> _tasksData;
 
-  /// A set of tasks
-  static List<Task> tasksList = [
-    Task(1, Colors.purple, 'Pratice Flutter', 1),
-    Task(2, Colors.amber, 'Read about Bitcoin', 3),
-    Task(3, Colors.deepOrange, 'Learn English', 2),
-  ];
+  Future<List<Task>> get tasksData => _tasksData;
 
   addNewTask(Task task) {
-    dbProvider = DatabaseProvider.db;
-    dbProvider.insert(task);
+    _dbProvider = DatabaseProvider.db;
+    _dbProvider.insert(task);
   }
 
-  Future<List<Task>> getAll() async {
-    dbProvider = DatabaseProvider.db;
-    return dbProvider.getAll();
+  loadAllTasks(){
+    _dbProvider = DatabaseProvider.db;
+    _tasksData = _dbProvider.getAll();
   }
 }
