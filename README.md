@@ -6,11 +6,10 @@ App available on PlayStore: https://play.google.com/store/apps/details?id=com.pe
 
 
 
-## Current State ( old images)
+## Current State
 
 <img src="/screenshots/img1.png" width="260" height="480"> <img src="/screenshots/img2.png" width="260" height="480">
 
-<img src="/screenshots/img4.png" width="260" height="480"> <img src="/screenshots/img5.png" width="260" height="480"> <img src="/screenshots/img3.png" width="260" height="480">
 
 ## TODO
 - [x] List Tasks
