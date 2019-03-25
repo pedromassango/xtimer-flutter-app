@@ -60,7 +60,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 430,
         color: Colors.white,
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 8),
         child: Stack(
@@ -85,7 +85,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                 GestureDetector(
                   onTap: (){},
                   child: Container(
-                    margin: EdgeInsets.only(top: 32),
+                    margin: EdgeInsets.only(top: 42),
                     alignment: Alignment.center,
                     child: Column(
                       children: <Widget>[
