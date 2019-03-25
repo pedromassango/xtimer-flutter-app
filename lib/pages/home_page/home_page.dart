@@ -12,13 +12,15 @@ import 'package:flutter/cupertino.dart';
 
 class HomePage extends StatefulWidget {
   final String title = 'Task Timer';
+  final HomeBloc homeBloc;
+  const HomePage({Key key, @required this.homeBloc}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeBloc _homeBloc;
+  HomeBloc get _homeBloc => widget.homeBloc;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   /// When called start timer Screen
@@ -54,14 +56,18 @@ class _HomePageState extends State<HomePage> {
     });
 
     if(newTask != null){
-      _homeBloc.dispatch(HomeEventAdd(task: newTask));
+      _homeBloc.dispatch( HomeEventAdd(task: newTask));
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    _homeBloc = BlocProvider.of(context);
+  void initState() {
+    _homeBloc.dispatch(HomeEventLoad());
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
