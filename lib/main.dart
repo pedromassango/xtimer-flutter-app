@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         home: SplashPage(),
         routes: <String, WidgetBuilder>{
-          '/home': (BuildContext context) => HomePage(),
+          '/home': (BuildContext context) => HomePage( homeBloc: widget.homeBloc,),
           '/new': (context) => NewTaskPage(),
         },
       ),
