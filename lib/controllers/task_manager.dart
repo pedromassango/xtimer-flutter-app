@@ -17,7 +17,7 @@ class TaskManager {
     dbProvider.insert(task);
   }
 
-  Future<void> loadAllTasks() async {
-    _tasksData = dbProvider.getAll();
+  Future<List<Task>> loadAllTasks() async {
+    return _tasksData = dbProvider.getAll();
   }
 }
