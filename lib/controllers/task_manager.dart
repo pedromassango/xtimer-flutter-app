@@ -14,7 +14,7 @@ class TaskManager {
   Future<List<Task>> get tasksData => _tasksData;
 
   Future<void> addNewTask(Task task) async {
-    dbProvider.insert(task);
+    return dbProvider.insert(task);
   }
 
   Future<List<Task>> loadAllTasks() async {
