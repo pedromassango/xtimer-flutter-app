@@ -28,8 +28,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>{
     }
 
     if(event is HomeEventAdd){
+      yield HomeStateLoading();
       await taskManager.addNewTask(event.task);
-      dispatch( HomeEventLoad());
+
+      dispatch(HomeEventLoad());
     }
 
   }
