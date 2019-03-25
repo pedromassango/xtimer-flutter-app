@@ -19,7 +19,7 @@ class _TimerPageState extends State<TimerPage>
     with SingleTickerProviderStateMixin {
   Timer timer;
 
-  Task getTask() => widget.task;
+  Task get task => widget.task;
 
   /// Store the time
   /// You will pass the minutes.
@@ -40,7 +40,7 @@ class _TimerPageState extends State<TimerPage>
     print('--updateClock()--');
 
     // if time is up, stop the timer
-    if(stopwatch.elapsed.inMinutes == getTask().minutes){
+    if(stopwatch.elapsed.inMinutes == task.minutes){
       if(Navigator.canPop(context)){
         print('--finished Timer Page--');
         Navigator.pop(context);
@@ -57,12 +57,12 @@ class _TimerPageState extends State<TimerPage>
     if (stopwatch.isRunning) {
       setState(() {
 
-        statusText = "${getTask().minutes-currentMinute} minutes left";
+        statusText = "${task.minutes-currentMinute} minutes left";
         buttonText = "Running";
       });
     }else if(stopwatch.elapsed.inSeconds == 0){
       setState(() {
-        timeText = '${getTask().minutes}:00';
+        timeText = '${task.minutes}:00';
         statusText = "Left on this Task";
         buttonText = "Start";
       });
@@ -79,7 +79,7 @@ class _TimerPageState extends State<TimerPage>
     super.initState();
 
     _controller = AnimationController(
-      duration: Duration(minutes: getTask().minutes),
+      duration: Duration(minutes: task.minutes),
       vsync: this,
     );
 
@@ -132,7 +132,7 @@ class _TimerPageState extends State<TimerPage>
             builder: (context, child) {
               return DemoBody(
                   size: size,
-                  color: getTask().color
+                  color: task.color
               );
             },
           ),

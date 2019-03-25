@@ -27,8 +27,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Set this screen as a fullscreen
-    //SystemChrome.setEnabledSystemUIOverlays([]);
     taskManager.loadAllTasks();
     _streamController = StreamController();
   }
@@ -39,7 +37,6 @@ class _HomePageState extends State<HomePage> {
         CupertinoPageRoute<bool>(
             fullscreenDialog: true,
             builder: (buildContext) => TimerPage(task: task)));
-    //.push(MaterialPageRoute(builder: (context) => TimerPage(task: task,)));
   }
 
   void _openBottomSheet() async {

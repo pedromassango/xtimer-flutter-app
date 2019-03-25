@@ -61,7 +61,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 400,
         color: Colors.white,
         padding: EdgeInsets.only(left: 16, right: 16, bottom: 8),
         child: Stack(
