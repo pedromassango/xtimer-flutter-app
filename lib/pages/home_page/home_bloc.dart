@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
-import 'package:xtimer/controllers/task_manager.dart';
-import 'package:xtimer/model/task_model.dart';
+import 'package:xtimer/data/task_manager.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:xtimer/pages/home_page/home_events.dart';
 import 'package:xtimer/pages/home_page/home_state.dart';
 

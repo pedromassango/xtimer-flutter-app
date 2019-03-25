@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xtimer/controllers/Database.dart';
-import 'package:xtimer/controllers/task_manager.dart';
+import 'package:xtimer/data/Database.dart';
+import 'package:xtimer/data/task_manager.dart';
 import 'package:xtimer/pages/home_page/home_bloc.dart';
 import 'package:xtimer/pages/new_task_page.dart';
 import 'package:xtimer/pages/splash_page.dart';

@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xtimer/model/task_model.dart';
-import 'package:xtimer/controllers/task_manager.dart';
 import 'package:xtimer/widgets/numberpicker.dart';
 
 class NewTaskPage extends StatefulWidget {
