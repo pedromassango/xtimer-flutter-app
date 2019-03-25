@@ -94,6 +94,7 @@ class _TimerPageState extends State<TimerPage>
   void dispose() {
     _controller.dispose();
     stopwatch.stop();
+    timer.cancel();
     super.dispose();
   }
 
