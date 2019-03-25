@@ -21,9 +21,10 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    super.initState();
     // Set this screen as a fullscreen
     SystemChrome.setEnabledSystemUIOverlays([]);
+
+    super.initState();
 
     startTimer();
   }
@@ -32,13 +33,10 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: new Center(
-        child: Hero(
-          tag: 'logo',
-          child: Image.asset(
-            'images/logo.png',
-            width: 95.0,
-            height: 95.0,
-          ),
+        child: Image.asset(
+          'images/logox.png',
+          width: 100.0,
+          height: 100.0,
         ),
       ),
     );
