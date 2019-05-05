@@ -20,7 +20,7 @@ App available on PlayStore: https://play.google.com/store/apps/details?id=com.pe
 - [x] Improve Countdown Timer
 - [x] Save task in database
 - [x] Add empty state in home page
-- [ ] Option to delete task
+- [ ] Option to delete task (swipe to delete)
 
 ## Getting Started
 
