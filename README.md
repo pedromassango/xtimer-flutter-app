@@ -12,6 +12,7 @@ App available on PlayStore: https://play.google.com/store/apps/details?id=com.pe
 
 
 ## TODO
+- [x] Use BLoC pattern
 - [x] List Tasks
 - [x] New Task
 - [x] Timer Screen
