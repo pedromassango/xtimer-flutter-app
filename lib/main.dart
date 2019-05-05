@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtimer/data/Database.dart';
+import 'package:xtimer/data/database.dart';
 import 'package:xtimer/data/task_manager.dart';
 import 'package:xtimer/pages/home_page/home_bloc.dart';
 import 'package:xtimer/pages/new_task_page.dart';
