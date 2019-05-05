@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:xtimer/data/Database.dart';
+import 'package:xtimer/data/database.dart';
 import 'package:xtimer/model/task_model.dart';
 
 class TaskManager {
