@@ -36,12 +36,12 @@ class _TimerPageState extends State<TimerPage>
   AnimationController _controller;
 
   /// Called each time the time is ticking
-  void updateClock(){
+  void updateClock() {
     print('--updateClock()--');
 
     // if time is up, stop the timer
-    if(stopwatch.elapsed.inMinutes == task.minutes){
-      if(Navigator.canPop(context)){
+    if (stopwatch.elapsed.inMinutes == task.minutes) {
+      if (Navigator.canPop(context)) {
         print('--finished Timer Page--');
         Navigator.pop(context);
       }
@@ -51,22 +51,22 @@ class _TimerPageState extends State<TimerPage>
     var currentMinute = stopwatch.elapsed.inMinutes;
 
     setState(() {
-      timeText = '${currentMinute.toString().padLeft(2,"0")}:${((stopwatch.elapsed.inSeconds%60)).toString().padLeft(2, '0')}';
+      timeText =
+          '${currentMinute.toString().padLeft(2, "0")}:${((stopwatch.elapsed.inSeconds % 60)).toString().padLeft(2, '0')}';
     });
 
     if (stopwatch.isRunning) {
       setState(() {
-
-        statusText = "${task.minutes-currentMinute} minutes left";
+        statusText = "${task.minutes - currentMinute} minutes left";
         buttonText = "Running";
       });
-    }else if(stopwatch.elapsed.inSeconds == 0){
+    } else if (stopwatch.elapsed.inSeconds == 0) {
       setState(() {
         timeText = '${task.minutes}:00';
         statusText = "Left on this Task";
         buttonText = "Start";
       });
-    }else{
+    } else {
       setState(() {
         statusText = 'Paused';
         buttonText = "Paused";
@@ -83,10 +83,10 @@ class _TimerPageState extends State<TimerPage>
       vsync: this,
     );
 
-    _controller.addStatusListener((state){
+    _controller.addStatusListener((state) {
       print('-----animation state: $state');
     });
-    
+
     timer = Timer.periodic(delay, (Timer t) => updateClock());
   }
 
@@ -105,24 +105,18 @@ class _TimerPageState extends State<TimerPage>
     stopwatch.reset();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-    heightSize = new Tween(
-        begin: begin,
-        end: MediaQuery.of(context).size.height-65
-    ).animate(
+    heightSize =
+        new Tween(begin: begin, end: MediaQuery.of(context).size.height - 65)
+            .animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOut,
       ),
     );
 
-    Size size = new Size(
-        MediaQuery.of(context).size.width,
-        heightSize.value
-    );
+    Size size = new Size(MediaQuery.of(context).size.width, heightSize.value);
 
     return Scaffold(
       backgroundColor: Color(0xFF212121),
@@ -131,10 +125,7 @@ class _TimerPageState extends State<TimerPage>
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              return DemoBody(
-                  size: size,
-                  color: task.color
-              );
+              return DemoBody(size: size, color: task.color);
             },
           ),
           Padding(
@@ -160,6 +151,21 @@ class _TimerPageState extends State<TimerPage>
                   onPressed: _restartCountDown,
                 ),
               ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 250),
+              child: Center(
+                child: Text(
+                  task.title,
+                  style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.white70,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ),
           Align(
