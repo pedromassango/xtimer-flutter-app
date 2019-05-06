@@ -156,6 +156,21 @@ class _TimerPageState extends State<TimerPage>
           Align(
             alignment: Alignment.center,
             child: Container(
+              margin: EdgeInsets.only(bottom: 250),
+              child: Center(
+                child: Text(
+                  task.title,
+                  style: TextStyle(
+                      fontSize: 24.0,
+                      color: Colors.white70,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Container(
               margin: EdgeInsets.only(bottom: 100),
               child: Center(
                 child: Column(
