@@ -37,18 +37,18 @@ class _HomePageState extends State<HomePage> {
     Task newTask = await showModalBottomSheet(
         context: context,
         builder: (context){
-      return Container(
-        color: Color(0xFF737373),
+      return GestureDetector(
+        onTap: (){},
         child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16)
-                )
-            ),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16),
+          color: Color(0xFF737373),
+          child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16)
+                  )
+              ),
             child: NewTaskPage(),
           ),
         ),

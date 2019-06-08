@@ -62,66 +62,71 @@ class _NewTaskPageState extends State<NewTaskPage> {
     return Container(
       height: 430,
         color: Colors.white,
-        padding: EdgeInsets.only(left: 16, right: 16, bottom: 8),
-        child: Stack(
+        margin: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                new TextField(
-                  maxLength: maxTitleLength,
-                  controller: _titleController,
-                  style: TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.black,),
-                  decoration: InputDecoration(
-                      hintText: 'Task title',
-                      counterText: maxTitleLength.toString(),
-                      filled: true,
-                    fillColor: Colors.white
-                  ),
-                ),
-                //Spacer(),
-                GestureDetector(
-                  onTap: (){},
-                  child: Container(
-                    margin: EdgeInsets.only(top: 42),
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: <Widget>[
-                        Text('Time (minutes)',
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontSize: 22,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: NumberPicker.horizontal(
-                              initialValue: _selectedTime,
-                              minValue: 10,
-                              maxValue: MAX_MINUTE_ALLOWED,
-                              step: 10,
-                              onChanged: (value){
-                                setState(() => _selectedTime = value);
-                              }
-                          ),
-                        ),
-                      ],
+            Container(
+              child: Column(
+                children: <Widget>[
+                  new TextField(
+                    maxLength: maxTitleLength,
+                    controller: _titleController,
+                    style: TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.black,),
+                    decoration: InputDecoration(
+                        hintText: 'Task title',
+                        counterText: maxTitleLength.toString(),
+                        filled: true,
+                      fillColor: Colors.white
                     ),
                   ),
-                ),
-              ],
+                  //Spacer(),
+                  GestureDetector(
+                    onTap: (){},
+                    child: Container(
+                      margin: EdgeInsets.only(top: 42),
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: <Widget>[
+                          Text('Time (minutes)',
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8),
+                            child: NumberPicker.horizontal(
+                                initialValue: _selectedTime,
+                                minValue: 10,
+                                maxValue: MAX_MINUTE_ALLOWED,
+                                step: 10,
+                                onChanged: (value){
+                                  setState(() => _selectedTime = value);
+                                }
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
-            //Spacer(),
-
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MaterialButton(
-                minWidth: double.maxFinite,
-                onPressed: _saveTaskAndClose,
-                child: Text('Save Task'.toUpperCase()),
+            InkWell(
+              onTap: _saveTaskAndClose,
+              child: Container(
+                height: 50,
+                width: double.maxFinite,
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.all(Radius.circular(16))
+                ),
+                child:  Center(child: Text('Save Task'.toUpperCase())),
               ),
             )
           ],
