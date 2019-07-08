@@ -1,5 +1,7 @@
 # xTimer
 
+[![Codemagic build status](https://api.codemagic.io/apps/5c94f447b4b6d9001df3708f/5c94f447b4b6d9001df3708e/status_badge.svg)](https://codemagic.io/apps/5c94f447b4b6d9001df3708f/5c94f447b4b6d9001df3708e/latest_build)
+
 A Timer app made with Flutter. Fork it, build it keep it open-source. Pull request is always welcome.
 
 App available on PlayStore: https://play.google.com/store/apps/details?id=com.pedromassango.xtimer
