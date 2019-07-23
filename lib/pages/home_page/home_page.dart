@@ -4,7 +4,6 @@ import 'package:xtimer/pages/home_page/home_bloc.dart';
 import 'package:xtimer/pages/home_page/home_events.dart';
 import 'package:xtimer/pages/home_page/home_state.dart';
 import 'package:xtimer/widgets/task_widget.dart';
-import 'package:xtimer/pages/timer_page.dart';
 import 'package:xtimer/pages/new_task_page.dart';
 
 import 'package:xtimer/model/task_model.dart';
@@ -23,40 +22,27 @@ class _HomePageState extends State<HomePage> {
   HomeBloc get _homeBloc => widget.homeBloc;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  /// When called start timer Screen
-  void _startTimerPage(Task task) {
-    Navigator.of(context, rootNavigator: true)
-        .push( CupertinoPageRoute<bool>(
-        fullscreenDialog: true,
-        builder: (buildContext) => TimerPage(task: task)
-    )
-    );
-  }
-
   void _openBottomSheet() async {
     Task newTask = await showModalBottomSheet(
         context: context,
-        builder: (context){
-      return GestureDetector(
-        onTap: (){},
-        child: Container(
-          color: Color(0xFF737373),
-          child: Container(
+        builder: (context) {
+          return Container(
+            color: Color(0xFF737373),
+            child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16)
-                  )
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
               ),
-            child: NewTaskPage(),
-          ),
-        ),
-      );
-    });
+              child: NewTaskPage(),
+            ),
+          );
+        });
 
-    if(newTask != null){
-      _homeBloc.dispatch( HomeEventAdd(task: newTask));
+    if (newTask != null) {
+      _homeBloc.dispatch(HomeEventAdd(task: newTask));
     }
   }
 
@@ -77,10 +63,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           widget.title,
           style: TextStyle(
-              color: Colors.black,
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold
-          ),
+              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           IconButton(
@@ -94,42 +77,37 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.only(top: 24.0),
         child: BlocBuilder<HomeEvent, HomeState>(
             bloc: _homeBloc,
             builder: (BuildContext context, state) {
               if (state is HomeStateLoading) {
-                return Center(child: CircularProgressIndicator(),);
-              }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is HomeStateLoaded) {
+                final List<Task> tasks = state.tasks;
 
-              if (state is HomeStateLoaded) {
-                final tasks = state.tasks;
-
-                if (tasks.length == 0) {
+                if (tasks.isEmpty) {
                   return Center(
-                    child: Text('No Tasks!',
-                      style: TextStyle(
-                          fontSize: 24
-                      ),
+                    child: Text(
+                      'No Tasks!',
+                      style: TextStyle(fontSize: 24),
                     ),
                   );
                 }
 
                 return ListView.builder(
                   itemCount: tasks.length,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(top: 8),
                   itemBuilder: (BuildContext context, int index) {
-                    var item = tasks.elementAt(index);
-                    return GestureDetector(
-                      child: TaskWidget(task: item),
-                      onTap: () => _startTimerPage(item),
-                    );
+                    final Task item = tasks.elementAt(index);
+                    return TaskWidget(task: item);
                   },
                 );
+              } else {
+                return SizedBox.shrink();
               }
-            }
-        ),
+            }),
       ),
     );
   }
