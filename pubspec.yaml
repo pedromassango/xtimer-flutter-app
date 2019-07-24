@@ -11,10 +11,10 @@ description: A Timer app made with Flutter.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.5.0+5
+version: 2.7.0+5
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.1 <3.0.0"
 
 dependencies:
   flutter:
