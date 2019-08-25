@@ -16,4 +16,8 @@ class TaskManager {
   Future<List<Task>> loadAllTasks() async {
     return dbProvider.getAll();
   }
+
+  Future<void> deleteTask(Task task) async {
+    return dbProvider.delete(task.id);
+  }
 }

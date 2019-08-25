@@ -24,8 +24,8 @@ class _TimerPageState extends State<TimerPage>
   /// Store the time
   /// You will pass the minutes.
   String timeText = '';
+  String statusText = '';
   String buttonText = 'Start';
-  String statusText = "Left on this Task";
 
   Stopwatch stopwatch = Stopwatch();
   static const delay = Duration(microseconds: 1);
@@ -37,38 +37,47 @@ class _TimerPageState extends State<TimerPage>
 
   /// Called each time the time is ticking
   void updateClock() {
-    print('--updateClock()--');
+    final duration = Duration(hours: task.hours, minutes: task.minutes, seconds: task.seconds);
 
     // if time is up, stop the timer
-    if (stopwatch.elapsed.inMinutes == task.minutes) {
-      if (Navigator.canPop(context)) {
+    if (stopwatch.elapsed.inMilliseconds == duration.inMilliseconds) {
         print('--finished Timer Page--');
-        Navigator.pop(context);
-      }
+        stopwatch.stop();
+        stopwatch.reset();
+        _controller.stop(canceled: false);
+        setState(() {
+          statusText = 'Finished';
+          buttonText = "Restart";
+        });
       return;
+    }else {
+      statusText = '';
     }
 
-    var currentMinute = stopwatch.elapsed.inMinutes;
+    final elapsedHours = (duration.inHours - stopwatch.elapsed.inHours) % 24;
+    final elapsedMinutes = (duration.inMinutes - stopwatch.elapsed.inMinutes) % 60;
+    final elapsedSeconds = (duration.inSeconds - stopwatch.elapsed.inSeconds) % 60;
 
     setState(() {
       timeText =
-          '${currentMinute.toString().padLeft(2, "0")}:${((stopwatch.elapsed.inSeconds % 60)).toString().padLeft(2, '0')}';
+          '${elapsedHours.toString().padLeft(2, "0")}:'
+              '${elapsedMinutes.toString().padLeft(2, '0')}:'
+              '${elapsedSeconds.toString().padLeft(2, '0')}';
     });
 
     if (stopwatch.isRunning) {
       setState(() {
-        statusText = "${task.minutes - currentMinute} minutes left";
         buttonText = "Running";
       });
     } else if (stopwatch.elapsed.inSeconds == 0) {
       setState(() {
-        timeText = '${task.minutes}:00';
-        statusText = "Left on this Task";
+        timeText = '${task.hours.toString().padLeft(2, "0")}:'
+            '${task.minutes.toString().padLeft(2, '0')}:'
+            '${task.seconds.toString().padLeft(2, '0')}';
         buttonText = "Start";
       });
     } else {
       setState(() {
-        statusText = 'Paused';
         buttonText = "Paused";
       });
     }
@@ -77,15 +86,16 @@ class _TimerPageState extends State<TimerPage>
   @override
   void initState() {
     super.initState();
-
+    final duration = Duration(
+        days: 0,
+        hours: task.hours,
+        minutes: task.minutes,
+        seconds: task.seconds
+    );
     _controller = AnimationController(
-      duration: Duration(minutes: task.minutes),
+      duration: duration,
       vsync: this,
     );
-
-    _controller.addStatusListener((state) {
-      print('-----animation state: $state');
-    });
 
     timer = Timer.periodic(delay, (Timer t) => updateClock());
   }
@@ -116,10 +126,10 @@ class _TimerPageState extends State<TimerPage>
       ),
     );
 
-    Size size = new Size(MediaQuery.of(context).size.width, heightSize.value);
+    Size size = Size(MediaQuery.of(context).size.width, heightSize.value);
 
     return Scaffold(
-      backgroundColor: Color(0xFF212121),
+      backgroundColor: Colors.black,
       body: Stack(
         children: <Widget>[
           AnimatedBuilder(

@@ -49,6 +49,7 @@ class _MyAppState extends State<MyApp> {
       bloc: widget.homeBloc,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
         home: SplashPage(),
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => HomePage( homeBloc: widget.homeBloc,),

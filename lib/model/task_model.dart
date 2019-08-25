@@ -4,14 +4,23 @@ class Task{
   final int id;
   final Color color;
   final String title;
-  final int minutes;
-  
-  Task(this.id, this.color, this.title, this.minutes);
+  final int hours, minutes, seconds;
+
+  Task({
+    this.id = 0,
+    this.color,
+    this.title,
+    this.hours,
+    this.minutes,
+    this.seconds
+  });
 
   factory Task.fromMap(Map<String, dynamic> json) => Task(
-      json['id'],
-      Color(json['color']),
-      json['title'],
-      json['minutes']
+      id: json['id'],
+      color: Color(json['color']),
+      title: json['title'],
+      hours: json['hours'],
+      minutes: json['minutes'],
+      seconds: json['seconds']
   );
 }

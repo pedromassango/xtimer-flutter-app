@@ -6,15 +6,23 @@ abstract class HomeEvent extends Equatable{
   HomeEvent([List tmp = const []]): super(tmp);
 }
 
-class HomeEventLoad extends HomeEvent{
+class LoadTasksEvent extends HomeEvent{
   @override
-  String toString() => 'HomeEventLoad';
+  String toString() => 'LoadTasksEvent';
 }
 
-class HomeEventAdd extends HomeEvent{
+class SaveTaskEvent extends HomeEvent{
   final Task task;
-  HomeEventAdd({ @required this.task}): super([task]);
+  SaveTaskEvent({ @required this.task}): super([task]);
 
   @override
-  String toString() => 'HomeEventAdd';
+  String toString() => 'SaveTaskEvent';
+}
+
+class DeleteTaskEvent extends HomeEvent{
+  final Task task;
+  DeleteTaskEvent({ @required this.task}): super([task]);
+
+  @override
+  String toString() => 'DeleteTaskEvent';
 }

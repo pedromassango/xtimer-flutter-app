@@ -25,7 +25,7 @@ class DatabaseProvider{
   initDb() async{
 
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentDirectory.path, 'task_timer.db');
+    String path = join(documentDirectory.path, 'xtimeros.db');
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
@@ -33,7 +33,9 @@ class DatabaseProvider{
               'id INTEGER PRIMARY KEY,'
               'color INTEGER,'
               'title TEXT,'
-              'minutes INTEGER'
+              'hours INTEGER,'
+              'minutes INTEGER,'
+              'seconds INTEGER'
               ')');
         }
     );
@@ -48,8 +50,8 @@ class DatabaseProvider{
     var id = table.first['id'];
 
     var raw = db.rawInsert(
-        'INSERT Into Task (id, color, title, minutes) VALUES (?,?,?,?)',
-        [id, task.color.value, task.title, task.minutes]
+        'INSERT Into Task (id, color, title, hours, minutes, seconds) VALUES (?,?,?,?,?,?)',
+        [id, task.color.value, task.title, task.hours, task.minutes, task.seconds]
     );
 
     print('Task saved :)');
@@ -67,5 +69,10 @@ class DatabaseProvider{
 
     print('tasks in database: ${tasks.length}');
     return tasks;
+  }
+
+  Future<void> delete(int id) async {
+    var db = await database;
+     await db.rawDelete('DELETE FROM Task WHERE id = ?', [id]);
   }
 }

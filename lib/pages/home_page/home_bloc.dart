@@ -18,18 +18,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState>{
   Stream<HomeState> mapEventToState(
       HomeState currentState, HomeEvent event) async*{
 
-    if(event is HomeEventLoad){
+    if(event is LoadTasksEvent){
       yield HomeStateLoading();
 
       final data = await taskManager.loadAllTasks();
       yield HomeStateLoaded(tasks: data);
     }
 
-    if(event is HomeEventAdd){
+    if(event is SaveTaskEvent){
       yield HomeStateLoading();
       await taskManager.addNewTask(event.task);
 
-      dispatch(HomeEventLoad());
+      dispatch(LoadTasksEvent());
+    }
+
+    if(event is DeleteTaskEvent) {
+      await taskManager.deleteTask(event.task);
     }
 
   }

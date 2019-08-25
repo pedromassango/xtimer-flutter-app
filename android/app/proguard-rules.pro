@@ -6,6 +6,6 @@
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
 
--ignorewarnings
--keepclassmembers **
--keepclasseswithmembers **
+#-ignorewarnings
+#-keepclassmembers **
+#-keepclasseswithmembers **

@@ -371,8 +371,8 @@ class NumberPicker extends StatelessWidget {
   bool _userStoppedScrolling(Notification notification,
       ScrollController scrollController) {
     return notification is UserScrollNotification &&
-        notification.direction == ScrollDirection.idle &&
-        scrollController.position.activity is! HoldScrollActivity;
+        notification.direction == ScrollDirection.idle;
+        //scrollController.position.activity is! HoldScrollActivity;
   }
 
   ///converts integer indicator of decimal value to double

@@ -12,17 +12,21 @@ class TaskWidget extends StatelessWidget {
   /// When called start timer Screen
   void _startTimerPage(BuildContext context, Task task) {
     Navigator.of(context, rootNavigator: true).push(
-      MaterialPageRoute<bool>(
-        fullscreenDialog: true,
-        builder: (buildContext) => TimerPage(task: task),
+      CupertinoPageRoute(
+        builder: (_) => TimerPage(task: task),
       ),
     );
+  }
+
+  String _formatDuration() {
+    return '${task.hours.toString().padLeft(2, '0')}:'
+        '${task.minutes.toString().padLeft(2, '0')}:'
+        '${task.seconds.toString().padLeft(2, '0')}';
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: _borderRadius,
         border: Border.all(
@@ -57,7 +61,7 @@ class TaskWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Duration: ${task.minutes}',
+                    'Duration: ${_formatDuration()}',
                     style: TextStyle(color: Colors.black, fontSize: 14.0),
                   ),
                 ],
