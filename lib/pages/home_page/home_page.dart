@@ -4,6 +4,7 @@ import 'package:xtimer/pages/bottom_sheet.dart';
 import 'package:xtimer/pages/home_page/home_bloc.dart';
 import 'package:xtimer/pages/home_page/home_events.dart';
 import 'package:xtimer/pages/home_page/home_state.dart';
+import 'package:xtimer/widgets/safe_app_bar.dart';
 import 'package:xtimer/widgets/task_widget.dart';
 import 'package:xtimer/pages/new_task_page.dart';
 
@@ -61,14 +62,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        title: Text(
-          widget.title,
-          style: TextStyle(
-              color: Colors.black, fontSize: 32.0, fontWeight: FontWeight.bold),
+      appBar: SafeAppBar(
+        appBar: AppBar(
+          centerTitle: false,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 32.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -91,8 +97,13 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Text('No Tasks',
-                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        Text(
+                          'No Tasks',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         Text('Add a new Task and it\nwill show up here.',
                             textAlign: TextAlign.center)
                       ],
@@ -110,15 +121,17 @@ class _HomePageState extends State<HomePage> {
                         background: Container(color: Colors.red),
                         direction: DismissDirection.endToStart,
                         key: ObjectKey(item),
-                          child: TaskWidget(task: item),
+                        child: TaskWidget(task: item),
                         onDismissed: (direction) {
                           tasks.remove(item);
                           setState(() {});
                           _homeBloc.dispatch(DeleteTaskEvent(task: item));
 
-                          Scaffold.of(context)
-                              .showSnackBar(
-                              SnackBar(content: Text("Task Deleted")));
+                          Scaffold.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Task Deleted"),
+                            ),
+                          );
                         },
                       ),
                     );
