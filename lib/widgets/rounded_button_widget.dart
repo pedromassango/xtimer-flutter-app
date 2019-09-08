@@ -20,13 +20,13 @@ class _RoundedButtonState extends State<RoundedButton>{
           borderRadius: BorderRadius.circular(100.0),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Colors.white,
-                blurRadius: 0.0
+                color: Colors.black,
+                blurRadius: 5.0
             )
           ]
       ),
       child: Center(
-        child: Text(widget.text.toUpperCase(),
+        child: Text(widget.text,
           style: TextStyle(
               fontSize: 20.0,
           ),

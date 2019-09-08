@@ -54,15 +54,16 @@ class _TimerPageState extends State<TimerPage>
       statusText = '';
     }
 
-    final elapsedHours = (duration.inHours - stopwatch.elapsed.inHours) % 24;
-    final elapsedMinutes = (duration.inMinutes - stopwatch.elapsed.inMinutes) % 60;
-    final elapsedSeconds = (duration.inSeconds - stopwatch.elapsed.inSeconds) % 60;
+    final millisecondsRemaining = duration.inMilliseconds - stopwatch.elapsed.inMilliseconds;
+    final hoursRemaining = ((millisecondsRemaining / (1000*60*60)) % 24).toInt();
+    final minutesRemaining = ((millisecondsRemaining / (1000*60)) % 60).toInt();
+    final secondsRemaining = ((millisecondsRemaining / 1000) % 60).toInt();
 
     setState(() {
       timeText =
-          '${elapsedHours.toString().padLeft(2, "0")}:'
-              '${elapsedMinutes.toString().padLeft(2, '0')}:'
-              '${elapsedSeconds.toString().padLeft(2, '0')}';
+          '${hoursRemaining.toString().padLeft(2, '0')}:'
+              '${minutesRemaining.toString().padLeft(2, '0')}:'
+              '${secondsRemaining.toString().padLeft(2, '0')}';
     });
 
     if (stopwatch.isRunning) {
