@@ -114,7 +114,6 @@ class _NewTaskPageState extends State<NewTaskPage> {
                       _durationError == ''
                           ? SizedBox.shrink()
                           : SizedBox(
-                              height: 12,
                               child: Text(
                                 _durationError,
                                 maxLines: 1,
