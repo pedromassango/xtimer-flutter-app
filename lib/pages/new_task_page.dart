@@ -21,26 +21,32 @@ class _NewTaskPageState extends State<NewTaskPage> {
   int _selectedHour = 0;
   int _selectedMinute = 0;
   int _selectedSecond = 0;
+  String _durationError = '';
 
   Color getRandomColor() {
     Random r = Random();
     var colorsList = Colors.primaries;
 
-    return colorsList.elementAt(r.nextInt(colorsList.length -1));
+    return colorsList.elementAt(r.nextInt(colorsList.length - 1));
   }
 
- void _saveTaskAndClose() {
+  void _saveTaskAndClose() {
     String title = _titleController.text;
 
     if (_formKey.currentState.validate() != false) {
+      if (_selectedHour == 0 && _selectedMinute == 0 && _selectedSecond == 0) {
+        setState(() =>
+            _durationError = 'Select a duration by swiping an interval up');
+        return;
+      }
+      _durationError = '';
       var color = getRandomColor();
       var task = new Task(
-        color: color,
-        title: title,
-        hours: _selectedHour,
-        minutes: _selectedMinute,
-        seconds: _selectedSecond
-      );
+          color: color,
+          title: title,
+          hours: _selectedHour,
+          minutes: _selectedMinute,
+          seconds: _selectedSecond);
 
       Navigator.of(context).pop(task);
     }
@@ -86,7 +92,7 @@ class _NewTaskPageState extends State<NewTaskPage> {
                       return null;
                     },
                     decoration: InputDecoration(
-                      hintText: 'Task Title',
+                        hintText: 'Task Title',
                         counterText: _maxTitleLength.toString(),
                         filled: true,
                         hasFloatingPlaceholder: false,
@@ -99,10 +105,23 @@ class _NewTaskPageState extends State<NewTaskPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text('Duration',
-                        maxLines: 1, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      Text(
+                        'Duration',
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 12),
+                      _durationError == ''
+                          ? SizedBox.shrink()
+                          : SizedBox(
+                              height: 12,
+                              child: Text(
+                                _durationError,
+                                maxLines: 1,
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.red),
+                              ),
+                            ),
                       Row(
                         children: <Widget>[
                           Expanded(
@@ -218,7 +237,7 @@ class _SelectorState<T> extends State<_Selector> {
             widget.itemBuilder(item),
             style: TextStyle(
                 fontSize: 14,
-                color: isSelected ?  Theme.of(context).accentColor : Colors.grey,
+                color: isSelected ? Theme.of(context).accentColor : Colors.grey,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal),
           ),
         );
@@ -226,9 +245,8 @@ class _SelectorState<T> extends State<_Selector> {
       onSelectedItemChanged: (i) {
         setState(() {
           _currentIndex = i;
-          widget.onSelectedItemChanged( widget.items.elementAt(i));
+          widget.onSelectedItemChanged(widget.items.elementAt(i));
         });
-
       },
     );
   }
